@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Review Page</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+      <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+
+<body>
+
+  <div class="table-users">
+   <div class="header">Reviews</div>
+
+   <table cellspacing="0">
+      <tr>
+         <th>Name</th>
+         {% comment %} <th>Images</th> {% endcomment %}
+         <th>Features</th>
+         <th>Star rating</th>
+         <th>Price</th>
+         <th width="230">Rating</th>
+         <th width="230">Review Count</th>
+         <th width="230">Feedback</th>
+      </tr>
+         {% for review in reviews %}
+      <tr>
+
+          {% comment %} <td>{{review['name']}}</td> 
+          <td>
+            {% for image in review['images'] %}
+                <img src="{{ image['filename'] }}" alt="Product Image">
+            {% endfor %}
+        </td>{% endcomment %}
+        
+         <td>{{review['features']}}</td>
+         <td>{{review['star_rating']}}</td>
+         <td>{{review['price']}} </td>
+         <td>{{review['rating']}} </td>
+         <td>{{review['review_count']}} </td>
+         <td>{% for i in review['Feedback'] %}
+          {{i}}
+          {% endfor %} 
+        </td>
+       {% endfor %}
+   </table>
+</div>
+
+
+
+</body>
+
+</html>
