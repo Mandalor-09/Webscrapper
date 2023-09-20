@@ -1,3 +1,4 @@
+
 from flask import Flask,render_template,request,jsonify
 from pymongo.mongo_client import MongoClient
 from scrapper import scrape_product_data
@@ -5,7 +6,7 @@ import logging
 
 from urllib.parse import quote_plus  # Import quote_plus
 # URL encode special characters in the password
-password = quote_plus("Ok@123bu")
+password = quote_plus("")
 # Construct the MongoDB connection URI
 uri = f"mongodb+srv://Mandalor_09:{password}@webscrapper.vzcp7cg.mongodb.net/?retryWrites=true&w=majority"
 # Create a new client and connect to the server
@@ -30,9 +31,9 @@ def index():
     if request.method == 'POST':
 
         search_query = request.form['content'].replace(" ","")
-        print(search_query,'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>')
+        #print(search_query,'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>')
         reviews = scrape_product_data(search_query)
-        print(reviews,'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>')
+        #print(reviews,'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>')
         coll_pw_eng.insert_many(reviews)
         return render_template('result.html', reviews=reviews)
 
